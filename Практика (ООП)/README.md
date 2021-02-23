@@ -1,2 +1,0 @@
-# Practic-OOP
-# Practic-OOP
