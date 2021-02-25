@@ -8,10 +8,8 @@ public class Student extends Contact{
     private int mark;
     private String nameTeacher;
 
-    public Student(int id_student, String fam, String name, int group, String department, String discipline, int mark, String nameTeacher) {
-        this.id = id_student;
-        this.lastName = fam;
-        this.firstName = name;
+    public Student(int id_student, String fam, String name, String address,int group, String department, String discipline, int mark, String nameTeacher) {
+        super(id_student, fam, name, address);
         this.group = group;
         this.department = department;
         this.discipline = discipline;

@@ -7,11 +7,11 @@ public class Contact {
     protected String lastName;
     protected String address;
 
-    public Contact() {
-        id = 0;
-        firstName = "First name";
-        lastName = "Last name";
-        address = "Address";
+    public Contact(int id, String firstName, String lastName, String address) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
     }
 
     public int getId() {
