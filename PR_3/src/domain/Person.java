@@ -1,5 +1,8 @@
 package domain;
-        
+
+import java.io.IOException;
+import java.io.FileWriter;
+
 public class Person {
     
     protected int id;
@@ -44,5 +47,14 @@ public class Person {
     @Override
     public String toString() {
         return "ID: " + id + "\nFirst name: " + firstName + "\nLast name: " + lastName;
+    }
+    
+    public void fileWriter() {
+        try(FileWriter fileWriter = new FileWriter("info.txt", false)) {
+            fileWriter.write(toString());
+        }
+        catch(IOException exception) {
+            exception.printStackTrace();
+        }
     }
 }

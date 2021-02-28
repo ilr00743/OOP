@@ -103,4 +103,8 @@ public class Student extends Person{
         return super.toString() + "\nGroup: " + group + "\nDepartment: " + department + "\nDiscipline: " + discipline + "\nMark: " + mark + "\nNameTeacher: " + nameTeacher;
     }
     
+    @Override
+    public void fileWriter() {
+        super.fileWriter();
+    }
 }

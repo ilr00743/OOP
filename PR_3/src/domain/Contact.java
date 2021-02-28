@@ -62,4 +62,9 @@ public class Contact extends Person{
     public String toString() {
         return super.toString() + "\nAddress: " + getAddress();
     }
+    
+    @Override
+    public void fileWriter() {
+        super.fileWriter();
+    }
 }

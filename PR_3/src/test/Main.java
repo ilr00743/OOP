@@ -2,15 +2,29 @@ package test;
 
 import domain.*;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
+        
+        Scanner scanner = new Scanner(System.in);
+        
         Contact contact = new Contact();
-        Student student = new Student();
-        Order order = new Order();
+        
+        System.out.println("Enter the First Name: ");
+        contact.setFirstName(scanner.nextLine());
+        
+        System.out.println("Enter the Last Name: ");
+        contact.setLastName(scanner.nextLine());
+        
+        System.out.println("Enter the ID: ");
+        contact.setId(scanner.nextInt());
+        
+        System.out.println();
         
         System.out.println(contact);
-        System.out.println(student);
-        System.out.println(order);
+        
+        contact.fileWriter();
     }
 }

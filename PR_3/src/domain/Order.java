@@ -73,4 +73,8 @@ public class Order extends Person{
         return super.toString() + "\nDate Time: " + dateTime + "\nType: " + type;
     }
     
+    @Override
+    public void fileWriter() {
+        super.fileWriter();
+    }
 }
