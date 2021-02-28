@@ -1,48 +1,20 @@
 package domain;
 
-public class Order {
+public class Order extends Person{
     
-    private int id;
-    private String name;
-    private String courier;
     private String dateTime;
-    private int type;
+    private byte type;
 
-    public Order(int id, String name, String courier, String dateTime, int type) {
+    public Order(int id, String name, String courier, String dateTime, byte type) {
         this.id = id;
-        this.name = name;
-        this.courier = courier;
+        this.firstName = name;
+        this.lastName = courier;
         this.dateTime = dateTime;
         this.type = type;
     }
     
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        if (id >= 0) {
-            this.id = id;
-        }
-        else {
-            System.out.println("Id не може бути менше нуля!");
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCourier() {
-        return courier;
-    }
-
-    public void setCourier(String courier) {
-        this.courier = courier;
+    public Order() {
+        this(3, "Nokia 3310", "Ivanov", "12.12.2012 12:12:12", (byte)1);
     }
     
     public String getDateTime() {
@@ -53,16 +25,52 @@ public class Order {
         this.dateTime = dateTime;
     }
 
-    public int getType() {
+    public byte getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(byte type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
-        return "Id: " + id + "\nName: " + name + "\nCourier: " + courier + "\nDate Time: " + dateTime + "\nType: " + type;
+    public int getId() {
+        return super.getId();
     }
+
+    @Override
+    public void setId(int id) {
+        if(id >= 0) {
+            super.setId(id);
+        }
+        else {
+            System.out.println("ID не може бути менше нуля!!!");
+        }
+    }
+
+    @Override
+    public String getFirstName() {
+        return super.getFirstName();
+    }
+
+    @Override
+    public void setFirstName(String firstName) {
+        super.setFirstName(firstName);
+    }
+
+    @Override
+    public String getLastName() {
+        return super.getLastName();
+    }
+
+    @Override
+    public void setLastName(String lastName) {
+        super.setLastName(lastName);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nDate Time: " + dateTime + "\nType: " + type;
+    }
+    
 }

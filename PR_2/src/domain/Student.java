@@ -30,7 +30,12 @@ public class Student extends Person{
 
     @Override
     public void setId(int id) {
-        super.setId(id);
+        if(id >= 0) {
+            super.setId(id);
+        }
+        else {
+            System.out.println("ID не може бути менше нуля!!!");
+        }
     }
 
     @Override
