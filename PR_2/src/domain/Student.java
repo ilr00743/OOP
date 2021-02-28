@@ -1,49 +1,56 @@
 package domain;
 
-public class Student extends Contact{
+public class Student extends Person{
 
     private int group;
     private String department;
     private String discipline;
-    private int mark;
+    private byte mark;
     private String nameTeacher;
 
-    public Student(int id_student, String fam, String name, String address,int group, String department, String discipline, int mark, String nameTeacher) {
-        super(id_student, fam, name, address);
+    public Student(int id, String firstName, String lastName, int group, String department, String discipline, byte mark, String nameTeacher) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.group = group;
         this.department = department;
         this.discipline = discipline;
         this.mark = mark;
         this.nameTeacher = nameTeacher;
     }
-
-    public int getId_student() {
-        return id;
+    
+    public Student() {
+        this(4, "Ivan", "Ivanov", 35, "Some department", "Some discipline", (byte)5, "Ivanova");
+    }
+    
+    @Override
+    public int getId() {
+        return super.getId();
     }
 
-    public void setId_student(int id_student) {
-        if (id_student >= 0) {
-            this.id = id_student;
-        }
-        else {
-            System.out.println("Id не може бути менше нуля!");
-        }
+    @Override
+    public void setId(int id) {
+        super.setId(id);
     }
 
-    public String getFam() {
-        return lastName;
+    @Override
+    public String getFirstName() {
+        return super.getFirstName();
     }
 
-    public void setFam(String fam) {
-        this.lastName = fam;
+    @Override
+    public void setFirstName(String firstName) {
+        super.setFirstName(firstName);
     }
 
-    public String getName() {
-        return firstName;
+    @Override
+    public String getLastName() {
+        return super.getLastName();
     }
 
-    public void setName(String name) {
-        this.firstName = name;
+    @Override
+    public void setLastName(String lastName) {
+        super.setLastName(lastName);
     }
 
     public int getGroup() {
@@ -70,11 +77,11 @@ public class Student extends Contact{
         this.discipline = discipline;
     }
 
-    public int getMark() {
+    public byte getMark() {
         return mark;
     }
 
-    public void setMark(int mark) {
+    public void setMark(byte mark) {
         this.mark = mark;
     }
 
@@ -88,8 +95,7 @@ public class Student extends Contact{
 
     @Override
     public String toString() {
-        return "Id_student: " + id + "\nFam: " + lastName + "\nName: " + firstName + "\nGroup: " + group + "\nDepartment: " + department + "\nDiscipline: " + discipline + "\nMark: " + mark + "\nName of teacher: " + nameTeacher;
+        return super.toString() + "\nGroup: " + group + "\nDepartment: " + department + "\nDiscipline: " + discipline + "\nMark: " + mark + "\nNameTeacher: " + nameTeacher;
     }
-    
     
 }
