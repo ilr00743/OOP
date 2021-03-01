@@ -1,5 +1,8 @@
 package domain;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Contact extends Person{
 
     protected String address;
@@ -63,8 +66,12 @@ public class Contact extends Person{
         return super.toString() + "\nAddress: " + getAddress();
     }
     
-    @Override
     public void fileWriter() {
-        super.fileWriter();
+        try(FileWriter fileWriter = new FileWriter("contacts.txt", false)) {
+            fileWriter.write(toString());
+        }
+        catch(IOException exception) {
+            exception.printStackTrace();
+        }
     }
 }

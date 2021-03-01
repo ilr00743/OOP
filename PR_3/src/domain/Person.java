@@ -48,13 +48,4 @@ public class Person {
     public String toString() {
         return "ID: " + id + "\nFirst name: " + firstName + "\nLast name: " + lastName;
     }
-    
-    public void fileWriter() {
-        try(FileWriter fileWriter = new FileWriter("info.txt", false)) {
-            fileWriter.write(toString());
-        }
-        catch(IOException exception) {
-            exception.printStackTrace();
-        }
-    }
 }

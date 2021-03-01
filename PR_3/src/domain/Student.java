@@ -1,5 +1,8 @@
 package domain;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Student extends Person{
 
     private int group;
@@ -103,8 +106,12 @@ public class Student extends Person{
         return super.toString() + "\nGroup: " + group + "\nDepartment: " + department + "\nDiscipline: " + discipline + "\nMark: " + mark + "\nNameTeacher: " + nameTeacher;
     }
     
-    @Override
     public void fileWriter() {
-        super.fileWriter();
+        try(FileWriter fileWriter = new FileWriter("students.txt", false)) {
+            fileWriter.write(toString());
+        }
+        catch(IOException exception) {
+            exception.printStackTrace();
+        }
     }
 }

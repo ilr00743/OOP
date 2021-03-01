@@ -1,0 +1,8 @@
+ID: 25
+First name: Petya
+Last name: Petrov
+Group: 35
+Department: Some department
+Discipline: Some discipline
+Mark: 5
+NameTeacher: Ivanova

@@ -1,5 +1,8 @@
 package domain;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Order extends Person{
     
     private String dateTime;
@@ -73,8 +76,12 @@ public class Order extends Person{
         return super.toString() + "\nDate Time: " + dateTime + "\nType: " + type;
     }
     
-    @Override
     public void fileWriter() {
-        super.fileWriter();
+        try(FileWriter fileWriter = new FileWriter("orders.txt", false)) {
+            fileWriter.write(toString());
+        }
+        catch(IOException exception) {
+            exception.printStackTrace();
+        }
     }
 }
