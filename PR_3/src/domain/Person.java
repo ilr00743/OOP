@@ -1,8 +1,5 @@
 package domain;
 
-import java.io.IOException;
-import java.io.FileWriter;
-
 public class Person {
     
     protected int id;
