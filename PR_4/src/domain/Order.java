@@ -73,6 +73,6 @@ public class Order extends Person{
 
     @Override
     public String toString() {
-        return super.toString() + "\nDate Time: " + dateTime + "\nType: " + type;
+        return super.toString() + "\nDate Time: " + dateTime + "\nType: " + type + "\n";
     }
 }

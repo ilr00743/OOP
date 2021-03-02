@@ -63,6 +63,6 @@ public class Contact extends Person{
     
     @Override
     public String toString() {
-        return super.toString() + "\nAddress: " + getAddress();
+        return super.toString() + "\nAddress: " + getAddress() + "\n";
     }
 }
