@@ -9,15 +9,17 @@ import java.awt.event.ActionListener;
 import domain.Student;
 
 import interfaces.Form;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class StudentForm extends JFrame{
     
-    private final Student student = new Student();
+    private final Student STUDENT = new Student();
     
     public StudentForm(final Form form) {
         this.setTitle("STUDENT FORM");
-        this.setBounds(750, 350, 700, 300);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setBounds(380, 290, 760, 350);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         
         JPanel panel = new JPanel(new GridBagLayout());
         this.setContentPane(panel);
@@ -28,9 +30,10 @@ public class StudentForm extends JFrame{
         grid.fill = GridBagConstraints.HORIZONTAL;
         
         JLabel idLabel = new JLabel("ID");
-        grid.gridx = 4;
+        grid.gridx = 2;
         grid.gridy = 0;
         grid.gridwidth = 1;
+        idLabel.setHorizontalAlignment(JLabel.RIGHT);
         panel.add(idLabel, grid);
         
         JTextField idField = new JTextField();
@@ -40,9 +43,10 @@ public class StudentForm extends JFrame{
         panel.add(idField, grid);
         
         JLabel firstNameLabel = new JLabel("First Name");
-        grid.gridx = 4;
+        grid.gridx = 2;
         grid.gridy = 1;
         grid.gridwidth = 1;
+        firstNameLabel.setHorizontalAlignment(JLabel.RIGHT);
         panel.add(firstNameLabel, grid);
         
         JTextField firstNameField = new JTextField();
@@ -52,9 +56,10 @@ public class StudentForm extends JFrame{
         panel.add(firstNameField, grid);
         
         JLabel lastNameLabel = new JLabel("Last Name");
-        grid.gridx = 4;
+        grid.gridx = 2;
         grid.gridy = 2;
         grid.gridwidth = 1;
+        lastNameLabel.setHorizontalAlignment(JLabel.RIGHT);
         panel.add(lastNameLabel, grid);
         
         JTextField lastNameField = new JTextField();
@@ -62,11 +67,12 @@ public class StudentForm extends JFrame{
         grid.gridy = 2;
         grid.gridwidth = 1;
         panel.add(lastNameField, grid);
-        
+
         JLabel groupLabel = new JLabel("Group");
-        grid.gridx = 4;
+        grid.gridx = 2;
         grid.gridy = 3;
         grid.gridwidth = 1;
+        groupLabel.setHorizontalAlignment(JLabel.RIGHT);
         panel.add(groupLabel,grid);
         
         JTextField groupField = new JTextField();
@@ -76,114 +82,123 @@ public class StudentForm extends JFrame{
         panel.add(groupField, grid);
         
         JLabel departmentLabel = new JLabel("Department");
-        grid.gridx = 6;
-        grid.gridy = 0;
+        grid.gridx = 2;
+        grid.gridy = 4;
         grid.gridwidth = 1;
+        departmentLabel.setHorizontalAlignment(JLabel.RIGHT);
         panel.add(departmentLabel,grid);
         
         JTextField departmentField = new JTextField();
-        grid.gridx = 7;
-        grid.gridy = 0;
+        grid.gridx = 5;
+        grid.gridy = 4;
         grid.gridwidth = 1;
         panel.add(departmentField, grid);
         
         JLabel disciplineLabel = new JLabel("Discipline");
-        grid.gridx = 6;
-        grid.gridy = 1;
+        grid.gridx = 2;
+        grid.gridy = 5;
         grid.gridwidth = 1;
+        disciplineLabel.setHorizontalAlignment(JLabel.RIGHT);
         panel.add(disciplineLabel,grid);
         
         JTextField disciplineField = new JTextField();
-        grid.gridx = 7;
-        grid.gridy = 1;
+        grid.gridx = 5;
+        grid.gridy = 5;
         grid.gridwidth = 1;
         panel.add(disciplineField, grid);
         
         JLabel markLabel = new JLabel("Mark");
-        grid.gridx = 6;
-        grid.gridy = 2;
+        grid.gridx = 2;
+        grid.gridy = 6;
         grid.gridwidth = 1;
+        markLabel.setHorizontalAlignment(JLabel.RIGHT);
         panel.add(markLabel,grid);
         
         JTextField markField = new JTextField();
-        grid.gridx = 7;
-        grid.gridy = 2;
+        grid.gridx = 5;
+        grid.gridy = 6;
         grid.gridwidth = 1;
         panel.add(markField, grid);
         
         JLabel teacherLabel = new JLabel("Name of teacher");
-        grid.gridx = 6;
-        grid.gridy = 3;
+        grid.gridx = 2;
+        grid.gridy = 7;
         grid.gridwidth = 1;
+        teacherLabel.setHorizontalAlignment(JLabel.RIGHT);
         panel.add(teacherLabel,grid);
         
         JTextField teacherField = new JTextField();
-        grid.gridx = 7;
-        grid.gridy = 3;
+        grid.gridx = 5;
+        grid.gridy = 7;
         grid.gridwidth = 1;
         panel.add(teacherField, grid);
+        
+        ActionListener displayInfo = (ActionEvent event) -> {
+            try(FileReader fileReader = new FileReader("students.txt")) {
+                StringBuilder strBuilder = new StringBuilder();
+                
+                while(fileReader.ready()) {
+                    strBuilder.append((char)fileReader.read());
+                }
+                
+                JOptionPane.showMessageDialog(new JFrame(), strBuilder.toString(), "Reading file", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        };
+        
+        ActionListener sortInfo = (ActionEvent event) -> STUDENT.sortingArrayList();
+        
+        ActionListener writeIntoFile = (ActionEvent event) -> STUDENT.writeFile();
         
         ActionListener backToMenu = (ActionEvent event) -> form.changeStudentForm();
         
         ActionListener addContactInfo = (ActionEvent event) -> {
-            student.setId(Integer.parseInt(idField.getText()));
-            student.setFirstName(firstNameField.getText());
-            student.setLastName(lastNameField.getText());
-            student.setGroup(Integer.parseInt(idField.getText()));
-            student.setDepartment(departmentField.getText());
-            student.setDiscipline(disciplineField.getText());
-            student.setMark(Byte.parseByte(markField.getText()));
-            student.setNameTeacher(teacherField.getText());
-            student.fillingArrayList();
+            STUDENT.setId(Integer.parseInt(idField.getText()));
+            STUDENT.setFirstName(firstNameField.getText());
+            STUDENT.setLastName(lastNameField.getText());
+            STUDENT.setGroup(Integer.parseInt(idField.getText()));
+            STUDENT.setDepartment(departmentField.getText());
+            STUDENT.setDiscipline(disciplineField.getText());
+            STUDENT.setMark(Byte.parseByte(markField.getText()));
+            STUDENT.setNameTeacher(teacherField.getText());
+            STUDENT.fillingArrayList();
         };
-        
-        ActionListener displayInfo = (ActionEvent event) -> {
-            StringBuilder strBuilder = new StringBuilder();
-            
-            for(int i = 0; i < student.getArrayList().size(); i++) {
-                strBuilder.append(student.getArrayList().get(i)).append('\n');
-            }
-            
-            JOptionPane.showMessageDialog(null, strBuilder.toString(), "Students Info", JOptionPane.PLAIN_MESSAGE);
-        };
-        
-        ActionListener sortInfo = (ActionEvent event) -> student.sortingArrayList();
-        
-        ActionListener writeIntoFile = (ActionEvent event) -> student.writeFile();
-        
-        JButton addInfoButton = new JButton("Add Student Info");
-        grid.gridx = 4;
-        grid.gridy = 5;
-        grid.gridwidth = 4;
-        addInfoButton.addActionListener(addContactInfo);
-        panel.add(addInfoButton, grid);
-        
-        JButton sortButton = new JButton("Sorting of students");
-        grid.gridx = 1;
-        grid.gridy = 0;
-        grid.gridwidth = 1;
-        sortButton.addActionListener(sortInfo);
-        panel.add(sortButton, grid);
         
         JButton displayInfoButton = new JButton("Display Info");
-        grid.gridx = 2;
+        grid.gridx = 0;
         grid.gridy = 0;
         grid.gridwidth = 1;
         displayInfoButton.addActionListener(displayInfo);
         panel.add(displayInfoButton, grid);
         
-        JButton writeIntoFileButton = new JButton("Save to .txt");
-        grid.gridx = 1;
+        JButton sortButton = new JButton("Sorting of students");
+        grid.gridx = 0;
         grid.gridy = 1;
+        grid.gridwidth = 1;
+        sortButton.addActionListener(sortInfo);
+        panel.add(sortButton, grid);
+        
+        JButton writeIntoFileButton = new JButton("Save to students.txt");
+        grid.gridx = 0;
+        grid.gridy = 2;
         grid.gridwidth = 1;
         writeIntoFileButton.addActionListener(writeIntoFile);
         panel.add(writeIntoFileButton, grid);
-        
+         
         JButton backToMenuButton = new JButton("Back to Main Menu");
-        grid.gridx = 2;
-        grid.gridy = 1;
+        grid.gridx = 0;
+        grid.gridy = 4;
         grid.gridwidth = 1;
         backToMenuButton.addActionListener(backToMenu);
         panel.add(backToMenuButton, grid);
+        
+        JButton addInfoButton = new JButton("Add Student Info");
+        grid.gridx = 0;
+        grid.gridy = 8;
+        grid.gridwidth = 0;
+        addInfoButton.addActionListener(addContactInfo);
+        panel.add(addInfoButton, grid);
     }
 }

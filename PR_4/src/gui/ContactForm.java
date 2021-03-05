@@ -9,15 +9,17 @@ import java.awt.event.ActionListener;
 import domain.Contact;
 
 import interfaces.Form;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class ContactForm extends JFrame{
     
-    private final Contact contact = new Contact();
+    private final Contact CONTACT = new Contact();
     
     public ContactForm(final Form form) {
         this.setTitle("CONTACT FORM");
-        this.setBounds(750,350,700,300);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setBounds(400,290,700,300);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         JPanel panel = new JPanel(new GridBagLayout());
         this.setContentPane(panel);
         
@@ -78,29 +80,34 @@ public class ContactForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(addressField, grid);
         
+        ActionListener displayInfo = (ActionEvent event) -> {
+            try(FileReader fileReader = new FileReader("contacts.txt")) {
+                StringBuilder strBuilder = new StringBuilder();
+                
+                while(fileReader.ready()) {
+                    strBuilder.append((char)fileReader.read());
+                }
+                
+                JOptionPane.showMessageDialog(null, strBuilder.toString(), "Reading file", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        };
+        
+        ActionListener sortInfo = (ActionEvent event) -> CONTACT.sortingArrayList();
+        
+        ActionListener writeIntoFile = (ActionEvent event) -> CONTACT.writeFile();
+        
         ActionListener backToMenu = (ActionEvent event) -> form.changeContactForm();
         
         ActionListener addContactInfo = (ActionEvent event) -> {
-            contact.setId(Integer.parseInt(idField.getText()));
-            contact.setFirstName(firstNameField.getText());
-            contact.setLastName(lastNameField.getText());
-            contact.setAddress(addressField.getText());
-            contact.fillingArrayList();
+            CONTACT.setId(Integer.parseInt(idField.getText()));
+            CONTACT.setFirstName(firstNameField.getText());
+            CONTACT.setLastName(lastNameField.getText());
+            CONTACT.setAddress(addressField.getText());
+            CONTACT.fillingArrayList();
         };
-        
-        ActionListener displayInfo = (ActionEvent event) -> {
-            StringBuilder strBuilder = new StringBuilder();
-            
-            for(int i = 0; i < contact.getArrayList().size(); i++) {
-                strBuilder.append(contact.getArrayList().get(i)).append('\n');
-            }
-            
-            JOptionPane.showMessageDialog(null, strBuilder.toString(), "Contacts Info", JOptionPane.PLAIN_MESSAGE);
-        };
-        
-        ActionListener sortInfo = (ActionEvent event) -> contact.sortingArrayList();
-        
-        ActionListener writeIntoFile = (ActionEvent event) -> contact.writeFile();
         
         JButton displayInfoButton = new JButton("Display Info");
         grid.gridx = 0;
@@ -116,7 +123,6 @@ public class ContactForm extends JFrame{
         sortButton.addActionListener(sortInfo);
         panel.add(sortButton, grid);
         
-        
         JButton writeIntoFileButton = new JButton("Save to .txt");
         grid.gridx = 0;
         grid.gridy = 2;
@@ -126,7 +132,7 @@ public class ContactForm extends JFrame{
         
         JButton backToMenuButton = new JButton("Back to Main Menu");
         grid.gridx = 0;
-        grid.gridy = 3;
+        grid.gridy = 4;
         grid.gridwidth = 1;
         backToMenuButton.addActionListener(backToMenu);
         panel.add(backToMenuButton, grid);

@@ -18,7 +18,7 @@ public class MenuForm extends JFrame{
     public MenuForm(final Form form) {
         this.form = form;
         this.setTitle("MAIN MENU");
-        this.setBounds(750,350,350,250);
+        this.setBounds(600,300,350,250);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel(new GridBagLayout());
@@ -28,50 +28,44 @@ public class MenuForm extends JFrame{
         grid.weightx = 0;
         grid.weighty = 1;
         grid.fill = GridBagConstraints.HORIZONTAL;
+        grid.ipady = 10;
+        grid.ipadx = 10;
         
-        ActionListener contactFormAction = (ActionEvent event) -> form.changeContactForm();
-        
-        ActionListener studentFormAction = (ActionEvent event) -> form.changeStudentForm();
-        
-        ActionListener orderFormAction = (ActionEvent event) -> form.changeOrderForm();
-        
-        ActionListener fileReaderAction = (ActionEvent event) -> {
-            try(FileReader fileReader = new FileReader("file.txt")) {
-                StringBuilder strBuilder = new StringBuilder();
-                
-                while(fileReader.ready()) {
-                    strBuilder.append((char)fileReader.read());
-                }
-                
-                JOptionPane.showMessageDialog(new JFrame(), strBuilder.toString(), "Reading file", JOptionPane.PLAIN_MESSAGE);
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
+        ActionListener contactFormAction = (ActionEvent event) -> {            
+            form.changeContactForm();
+            JOptionPane.showMessageDialog(null, 
+                    "Для того, щоб додати дані про контакт, введіть його дані і натисніть кнопку Add Contact Info", "Instruction", 
+                    JOptionPane.INFORMATION_MESSAGE);
+        };
+        ActionListener studentFormAction = (ActionEvent event) -> {
+            form.changeStudentForm();
+            JOptionPane.showMessageDialog(null, 
+                    "Для того, щоб додати дані про студента, введіть його дані і натисніть кнопку Add Student Info", "Instruction", 
+                    JOptionPane.INFORMATION_MESSAGE);
+        };
+        ActionListener orderFormAction = (ActionEvent event) -> {
+            form.changeOrderForm();
+            JOptionPane.showMessageDialog(null, 
+                    "Для того, щоб додати дані про замовлення, введіть його дані і натисніть кнопку Add Order Info", "Instruction", 
+                    JOptionPane.INFORMATION_MESSAGE);
         };
         
-        JButton contactFormButton = new JButton("Contact");
+        JButton contactFormButton = new JButton("Contact Form");
         grid.gridx = 0;
         grid.gridy = 0;
         contactFormButton.addActionListener(contactFormAction);
         panel.add(contactFormButton, grid);
         
-        JButton studentFormButton = new JButton("Student");
+        JButton studentFormButton = new JButton("Student Form");
         grid.gridx = 0;
         grid.gridy = 1;
         studentFormButton.addActionListener(studentFormAction);
         panel.add(studentFormButton, grid);
         
-        JButton orderFormButton = new JButton("Order");
+        JButton orderFormButton = new JButton("Order Form");
         grid.gridx = 0;
         grid.gridy = 2;
         orderFormButton.addActionListener(orderFormAction);
         panel.add(orderFormButton, grid);
-        
-        JButton fileReadButton = new JButton("Read the file");
-        grid.gridx = 0;
-        grid.gridy = 3;
-        fileReadButton.addActionListener(fileReaderAction);
-        panel.add(fileReadButton, grid);
     }              
 }
