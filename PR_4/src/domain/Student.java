@@ -12,7 +12,7 @@ public class Student extends Person{
     private byte mark;
     private String nameTeacher;
 
-    public Student(int id, String firstName, String lastName, int group, String department, String discipline, byte mark, String nameTeacher) {
+    public Student(int id, String firstName, String lastName, int group, String department, String discipline, byte mark, String nameTeacher, ArrayList<String> arrayList) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,10 +21,11 @@ public class Student extends Person{
         this.discipline = discipline;
         this.mark = mark;
         this.nameTeacher = nameTeacher;
+        this.arrayList = arrayList;
     }
     
     public Student() {
-        this(4, "Ivan", "Ivanov", 35, "Some department", "Some discipline", (byte)5, "Ivanova");
+        this(4, "Ivan", "Ivanov", 35, "Some department", "Some discipline", (byte)5, "Ivanova", new ArrayList<String>());
     }
     
     @Override
@@ -101,9 +102,39 @@ public class Student extends Person{
     public void setNameTeacher(String nameTeacher) {
         this.nameTeacher = nameTeacher;
     }
+    
+    @Override
+    public ArrayList<String> getArrayList() {
+        return super.getArrayList();
+    }
+    
+    @Override
+    public void fillingArrayList() {
+        super.fillingArrayList();
+    }
+    
+    @Override
+    public void sortingArrayList() {
+        super.sortingArrayList();
+    }
 
     @Override
     public String toString() {
         return super.toString() + "\nGroup: " + group + "\nDepartment: " + department + "\nDiscipline: " + discipline + "\nMark: " + mark + "\nNameTeacher: " + nameTeacher + "\n";
+    }
+    
+    public void writeFile() {
+        try(FileWriter fileWriter = new FileWriter("students.txt", false)) {
+            StringBuilder strBuilder = new StringBuilder();
+            
+            arrayList.forEach((string) -> {
+                strBuilder.append(string).append('\n');
+            });
+            
+            fileWriter.write(String.valueOf(strBuilder));
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,19 +1,21 @@
 package domain;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+
 
 public class Person {
     
     protected int id;
     protected String firstName;
     protected String lastName;
+    protected ArrayList<String> arrayList;
     
     public Person() {
         this.id = 0;
         this.firstName = "Name";
         this.lastName = "Last name";
+        this.arrayList = new ArrayList<>();
     }
 
     public int getId() {
@@ -45,19 +47,20 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public ArrayList<String> getArrayList() {
+        return arrayList;
+    }
+
     @Override
     public String toString() {
         return "ID: " + id + "\nFirst name: " + firstName + "\nLast name: " + lastName;
     }
     
-    public void fileWriter(String fileName) {
-        try(FileWriter fileWriter = new FileWriter(fileName, true)) {
-            fileWriter.write(toString());
-            fileWriter.write('\n');
-            fileWriter.close();
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
+    public void fillingArrayList() {
+        arrayList.add(toString());
+    }
+    
+    public void sortingArrayList() {
+        Collections.sort(arrayList);
     }
 }
