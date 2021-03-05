@@ -8,13 +8,13 @@ import java.awt.event.ActionListener;
 
 import domain.Order;
 
-import interfaces.IForm;
+import interfaces.Form;
 
 public class OrderForm extends JFrame{
     
     private final Order order = new Order();
     
-    public OrderForm(final IForm form) {
+    public OrderForm(final Form form) {
         this.setTitle("ORDER FORM");
         this.setBounds(750, 350, 700, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -9,13 +9,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import interfaces.IForm;
+import interfaces.Form;
 
 public class MenuForm extends JFrame{
 
-    private final IForm form;
+    private final Form form;
     
-    public MenuForm(final IForm form) {
+    public MenuForm(final Form form) {
         this.form = form;
         this.setTitle("MAIN MENU");
         this.setBounds(750,350,350,250);

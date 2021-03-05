@@ -8,13 +8,13 @@ import java.awt.event.ActionListener;
 
 import domain.Contact;
 
-import interfaces.IForm;
+import interfaces.Form;
 
 public class ContactForm extends JFrame{
     
     private final Contact contact = new Contact();
     
-    public ContactForm(final IForm form) {
+    public ContactForm(final Form form) {
         this.setTitle("CONTACT FORM");
         this.setBounds(750,350,700,300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -8,13 +8,13 @@ import java.awt.event.ActionListener;
 
 import domain.Student;
 
-import interfaces.IForm;
+import interfaces.Form;
 
 public class StudentForm extends JFrame{
     
     private final Student student = new Student();
     
-    public StudentForm(final IForm form) {
+    public StudentForm(final Form form) {
         this.setTitle("STUDENT FORM");
         this.setBounds(750, 350, 700, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

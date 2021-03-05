@@ -2,11 +2,11 @@ package test;
 
 import javax.swing.*;
 
-import interfaces.IForm;
 
 import gui.*;
+import interfaces.Form;
 
-public class Main implements IForm{
+public class Main implements Form{
 
     private MenuForm menuForm;
     private ContactForm contactForm;
