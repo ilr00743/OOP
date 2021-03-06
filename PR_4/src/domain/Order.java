@@ -5,13 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Order extends Person{
-    
+    private String name;
     private String dateTime;
     private byte type;
 
     public Order(int id, String name, String courier, String dateTime, byte type, ArrayList<String> arrayList) {
         this.id = id;
-        this.firstName = name;
+        this.name = name;
         this.lastName = courier;
         this.dateTime = dateTime;
         this.type = type;
@@ -20,6 +20,14 @@ public class Order extends Person{
     
     public Order() {
         this(3, "Nokia 3310", "Ivanov", "12.12.2012 12:12:12", (byte)1, new ArrayList<String>());
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
     public String getDateTime() {
@@ -54,16 +62,6 @@ public class Order extends Person{
     }
 
     @Override
-    public String getFirstName() {
-        return super.getFirstName();
-    }
-
-    @Override
-    public void setFirstName(String firstName) {
-        super.setFirstName(firstName);
-    }
-
-    @Override
     public String getLastName() {
         return super.getLastName();
     }
@@ -90,7 +88,7 @@ public class Order extends Person{
     
     @Override
     public String toString() {
-        return super.toString() + "\nDate Time: " + dateTime + "\nType: " + type + "\n";
+        return super.toString() + "\nName of product: " + name + "\nDate Time: " + dateTime + "\nType: " + type + '\n';
     }
     
     public void writeFile() {

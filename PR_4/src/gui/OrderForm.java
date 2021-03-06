@@ -29,7 +29,7 @@ public class OrderForm extends JFrame{
         grid.weighty = 1;
         grid.fill = GridBagConstraints.HORIZONTAL;
         
-        JLabel idLabel = new JLabel("ID");
+        JLabel idLabel = new JLabel("ID: ");
         grid.gridx = 2;
         grid.gridy = 0;
         grid.gridwidth = 1;
@@ -42,20 +42,20 @@ public class OrderForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(idField, grid);
         
-        JLabel firstNameLabel = new JLabel("First Name");
+        JLabel nameLabel = new JLabel("Name of product: ");
         grid.gridx = 2;
         grid.gridy = 1;
         grid.gridwidth = 1;
-        firstNameLabel.setHorizontalAlignment(JLabel.RIGHT);
-        panel.add(firstNameLabel, grid);
+        nameLabel.setHorizontalAlignment(JLabel.RIGHT);
+        panel.add(nameLabel, grid);
         
-        JTextField firstNameField = new JTextField();
+        JTextField nameField = new JTextField();
         grid.gridx = 5;
         grid.gridy = 1;
         grid.gridwidth = 1;
-        panel.add(firstNameField, grid);
+        panel.add(nameField, grid);
         
-        JLabel lastNameLabel = new JLabel("Last Name");
+        JLabel lastNameLabel = new JLabel("Last Name of courier: ");
         grid.gridx = 2;
         grid.gridy = 2;
         grid.gridwidth = 1;
@@ -68,20 +68,20 @@ public class OrderForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(lastNameField, grid);
         
-        JLabel dayTimeLabel = new JLabel("Day and Time");
+        JLabel dateTimeLabel = new JLabel("Date and Time: ");
         grid.gridx = 2;
         grid.gridy = 3;
         grid.gridwidth = 1;
-        dayTimeLabel.setHorizontalAlignment(JLabel.RIGHT);
-        panel.add(dayTimeLabel,grid);
+        dateTimeLabel.setHorizontalAlignment(JLabel.RIGHT);
+        panel.add(dateTimeLabel,grid);
         
-        JTextField dayTimeField = new JTextField();
+        JTextField dateTimeField = new JTextField();
         grid.gridx = 5;
         grid.gridy = 3;
         grid.gridwidth = 1;
-        panel.add(dayTimeField, grid);
+        panel.add(dateTimeField, grid);
         
-        JLabel typeLabel = new JLabel("Type of order");
+        JLabel typeLabel = new JLabel("Type of order: ");
         grid.gridx = 2;
         grid.gridy = 4;
         grid.gridwidth = 1;
@@ -115,23 +115,33 @@ public class OrderForm extends JFrame{
         
         ActionListener backToMenu = (ActionEvent event) -> form.changeOrderForm();
         
+        ActionListener clearTextFields = (ActionEvent event) -> {
+            idField.setText("");
+            nameField.setText("");
+            lastNameField.setText("");
+            dateTimeField.setText("");
+            typeField.setText("");
+        };
+        
         ActionListener addContactInfo = (ActionEvent event) -> {
             ORDER.setId(Integer.parseInt(idField.getText()));
-            ORDER.setFirstName(firstNameField.getText());
+            ORDER.setName(nameField.getText());
             ORDER.setLastName(lastNameField.getText());
+            ORDER.setDateTime(dateTimeField.getText());
+            ORDER.setType(Byte.parseByte(typeField.getText()));
             ORDER.fillingArrayList();
         };
         
         JButton displayInfoButton = new JButton("Display Info");
         grid.gridx = 0;
-        grid.gridy = 0;
+        grid.gridy = 1;
         grid.gridwidth = 1;
         displayInfoButton.addActionListener(displayInfo);
         panel.add(displayInfoButton, grid);
         
         JButton sortButton = new JButton("Sorting of orders");
         grid.gridx = 0;
-        grid.gridy = 1;
+        grid.gridy = 2;
         grid.gridwidth = 1;
         sortButton.addActionListener(sortInfo);
         panel.add(sortButton, grid);
@@ -139,14 +149,22 @@ public class OrderForm extends JFrame{
         
         JButton writeIntoFileButton = new JButton("Save to orders.txt");
         grid.gridx = 0;
-        grid.gridy = 2;
+        grid.gridy = 3;
         grid.gridwidth = 1;
         writeIntoFileButton.addActionListener(writeIntoFile);
         panel.add(writeIntoFileButton, grid);
         
-        JButton backToMenuButton = new JButton("Back to Main Menu");
+        JButton clearFieldsButton = new JButton("Clear Text Fields");
         grid.gridx = 0;
         grid.gridy = 4;
+        grid.gridwidth = 1;
+        clearFieldsButton.addActionListener(clearTextFields);
+        panel.add(clearFieldsButton, grid);
+        
+        ImageIcon backToMenuIcon = new ImageIcon("D:\\study\\Practic OOP\\Practic-OOP\\PR_4\\src\\icons\\back_to_menu.png");
+        JButton backToMenuButton = new JButton(backToMenuIcon);
+        grid.gridx = 0;
+        grid.gridy = 0;
         grid.gridwidth = 1;
         backToMenuButton.addActionListener(backToMenu);
         panel.add(backToMenuButton, grid);

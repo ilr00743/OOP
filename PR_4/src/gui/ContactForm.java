@@ -101,6 +101,13 @@ public class ContactForm extends JFrame{
         
         ActionListener backToMenu = (ActionEvent event) -> form.changeContactForm();
         
+        ActionListener clearTextFields = (ActionEvent event) -> {
+            idField.setText("");
+            firstNameField.setText("");
+            lastNameField.setText("");
+            addressField.setText("");
+        };
+        
         ActionListener addContactInfo = (ActionEvent event) -> {
             CONTACT.setId(Integer.parseInt(idField.getText()));
             CONTACT.setFirstName(firstNameField.getText());
@@ -111,31 +118,31 @@ public class ContactForm extends JFrame{
         
         JButton displayInfoButton = new JButton("Display Info");
         grid.gridx = 0;
-        grid.gridy = 0;
+        grid.gridy = 1;
         grid.gridwidth = 1;
         displayInfoButton.addActionListener(displayInfo);
         panel.add(displayInfoButton, grid);
         
         JButton sortButton = new JButton("Sorting of contacts");
         grid.gridx = 0;
-        grid.gridy = 1;
+        grid.gridy = 2;
         grid.gridwidth = 1;
         sortButton.addActionListener(sortInfo);
         panel.add(sortButton, grid);
         
         JButton writeIntoFileButton = new JButton("Save to .txt");
         grid.gridx = 0;
-        grid.gridy = 2;
+        grid.gridy = 3;
         grid.gridwidth = 1;
         writeIntoFileButton.addActionListener(writeIntoFile);
         panel.add(writeIntoFileButton, grid);
         
-        JButton backToMenuButton = new JButton("Back to Main Menu");
+        JButton clearFieldsButton = new JButton("Clear Text Fields");
         grid.gridx = 0;
         grid.gridy = 4;
         grid.gridwidth = 1;
-        backToMenuButton.addActionListener(backToMenu);
-        panel.add(backToMenuButton, grid);
+        clearFieldsButton.addActionListener(clearTextFields);
+        panel.add(clearFieldsButton, grid);
         
         JButton addInfoButton = new JButton("Add Contact Info");
         grid.gridx = 0;
@@ -143,5 +150,17 @@ public class ContactForm extends JFrame{
         grid.gridwidth = 0;
         addInfoButton.addActionListener(addContactInfo);
         panel.add(addInfoButton, grid);
+        
+        ImageIcon backToMenuIcon = new ImageIcon("D:\\study\\Practic OOP\\Practic-OOP\\PR_4\\src\\icons\\back_to_menu.png");
+        JButton backToMenuButton = new JButton(backToMenuIcon);
+        grid.gridx = 0;
+        grid.gridy = 0;
+        grid.gridwidth = 1;
+        backToMenuButton.addActionListener(backToMenu);
+        panel.add(backToMenuButton, grid);
+        
+        
+        
+        
     }
 }
