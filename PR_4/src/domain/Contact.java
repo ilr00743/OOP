@@ -64,18 +64,13 @@ public class Contact extends Person{
     }
     
     @Override
-    public ArrayList<String> getArrayList() {
-        return super.getArrayList();
-    }
-    
-    @Override
     public void fillingArrayList() {
         super.fillingArrayList();
     }
-    
+
     @Override
-    public void sortingArrayList() {
-        super.sortingArrayList();
+    public void sortArrayList() {
+        super.sortArrayList();
     }
     
     @Override
@@ -92,6 +87,7 @@ public class Contact extends Person{
             });
             
             fileWriter.write(String.valueOf(strBuilder));
+            fileWriter.close();
         }
         catch(IOException e) {
             e.printStackTrace();

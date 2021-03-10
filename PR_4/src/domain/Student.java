@@ -25,7 +25,7 @@ public class Student extends Person{
     }
     
     public Student() {
-        this(4, "Ivan", "Ivanov", 35, "Some department", "Some discipline", (byte)5, "Ivanova", new ArrayList<String>());
+        this(4, "Ivan", "Ivanov", 35, "Some department", "Some discipline", (byte)5, "Ivanova", new ArrayList<>());
     }
     
     @Override
@@ -104,18 +104,13 @@ public class Student extends Person{
     }
     
     @Override
-    public ArrayList<String> getArrayList() {
-        return super.getArrayList();
-    }
-    
-    @Override
     public void fillingArrayList() {
         super.fillingArrayList();
     }
-    
+
     @Override
-    public void sortingArrayList() {
-        super.sortingArrayList();
+    public void sortArrayList() {
+        super.sortArrayList();
     }
 
     @Override

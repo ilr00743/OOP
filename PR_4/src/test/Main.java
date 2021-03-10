@@ -2,7 +2,6 @@ package test;
 
 import javax.swing.*;
 
-
 import gui.*;
 import interfaces.Form;
 

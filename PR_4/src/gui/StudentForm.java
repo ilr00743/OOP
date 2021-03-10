@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import domain.Student;
 
 import interfaces.Form;
+
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -29,7 +30,7 @@ public class StudentForm extends JFrame{
         grid.weighty = 1;
         grid.fill = GridBagConstraints.HORIZONTAL;
         
-        JLabel idLabel = new JLabel("ID");
+        JLabel idLabel = new JLabel("ID: ");
         grid.gridx = 2;
         grid.gridy = 0;
         grid.gridwidth = 1;
@@ -42,7 +43,7 @@ public class StudentForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(idField, grid);
         
-        JLabel firstNameLabel = new JLabel("First Name");
+        JLabel firstNameLabel = new JLabel("First Name: ");
         grid.gridx = 2;
         grid.gridy = 1;
         grid.gridwidth = 1;
@@ -55,7 +56,7 @@ public class StudentForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(firstNameField, grid);
         
-        JLabel lastNameLabel = new JLabel("Last Name");
+        JLabel lastNameLabel = new JLabel("Last Name: ");
         grid.gridx = 2;
         grid.gridy = 2;
         grid.gridwidth = 1;
@@ -68,7 +69,7 @@ public class StudentForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(lastNameField, grid);
 
-        JLabel groupLabel = new JLabel("Group");
+        JLabel groupLabel = new JLabel("Group: ");
         grid.gridx = 2;
         grid.gridy = 3;
         grid.gridwidth = 1;
@@ -81,7 +82,7 @@ public class StudentForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(groupField, grid);
         
-        JLabel departmentLabel = new JLabel("Department");
+        JLabel departmentLabel = new JLabel("Department: ");
         grid.gridx = 2;
         grid.gridy = 4;
         grid.gridwidth = 1;
@@ -94,7 +95,7 @@ public class StudentForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(departmentField, grid);
         
-        JLabel disciplineLabel = new JLabel("Discipline");
+        JLabel disciplineLabel = new JLabel("Discipline: ");
         grid.gridx = 2;
         grid.gridy = 5;
         grid.gridwidth = 1;
@@ -107,7 +108,7 @@ public class StudentForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(disciplineField, grid);
         
-        JLabel markLabel = new JLabel("Mark");
+        JLabel markLabel = new JLabel("Mark: ");
         grid.gridx = 2;
         grid.gridy = 6;
         grid.gridwidth = 1;
@@ -120,7 +121,7 @@ public class StudentForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(markField, grid);
         
-        JLabel teacherLabel = new JLabel("Name of teacher");
+        JLabel teacherLabel = new JLabel("Name of teacher: ");
         grid.gridx = 2;
         grid.gridy = 7;
         grid.gridwidth = 1;
@@ -141,14 +142,14 @@ public class StudentForm extends JFrame{
                     strBuilder.append((char)fileReader.read());
                 }
                 
-                JOptionPane.showMessageDialog(new JFrame(), strBuilder.toString(), "Reading file", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, strBuilder.toString(), "Reading file", JOptionPane.PLAIN_MESSAGE);
             }
             catch(IOException e) {
                 e.printStackTrace();
             }
         };
         
-        ActionListener sortInfo = (ActionEvent event) -> STUDENT.sortingArrayList();
+        ActionListener sortInfo = (ActionEvent event) -> STUDENT.sortArrayList();
         
         ActionListener writeIntoFile = (ActionEvent event) -> STUDENT.writeFile();
         

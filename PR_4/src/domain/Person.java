@@ -3,8 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
-public class Person {
+public class Person{
     
     protected int id;
     protected String firstName;
@@ -15,7 +14,7 @@ public class Person {
         this.id = 0;
         this.firstName = "Name";
         this.lastName = "Last name";
-        this.arrayList = new ArrayList<>();
+        arrayList = new ArrayList<>();
     }
 
     public int getId() {
@@ -47,20 +46,16 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public ArrayList<String> getArrayList() {
-        return arrayList;
-    }
-
-    @Override
-    public String toString() {
-        return "ID: " + id + "\nFirst name: " + firstName + "\nLast name: " + lastName;
-    }
-    
     public void fillingArrayList() {
         arrayList.add(toString());
     }
     
-    public void sortingArrayList() {
+    public void sortArrayList() {
         Collections.sort(arrayList);
+    }
+    
+    @Override
+    public String toString() {
+        return "ID: " + id + "\nFirst name: " + firstName + "\nLast name: " + lastName;
     }
 }

@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import domain.Contact;
 
 import interfaces.Form;
+
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -28,7 +29,7 @@ public class ContactForm extends JFrame{
         grid.weighty = 1;
         grid.fill = GridBagConstraints.HORIZONTAL;
         
-        JLabel idLabel = new JLabel("ID");
+        JLabel idLabel = new JLabel("ID: ");
         grid.gridx = 2;
         grid.gridy = 0;
         grid.gridwidth = 1;
@@ -41,7 +42,7 @@ public class ContactForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(idField, grid);
         
-        JLabel firstNameLabel = new JLabel("First Name");
+        JLabel firstNameLabel = new JLabel("First Name: ");
         grid.gridx = 2;
         grid.gridy = 1;
         grid.gridwidth = 1;
@@ -54,7 +55,7 @@ public class ContactForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(firstNameField, grid);
         
-        JLabel lastNameLabel = new JLabel("Last Name");
+        JLabel lastNameLabel = new JLabel("Last Name: ");
         grid.gridx = 2;
         grid.gridy = 2;
         grid.gridwidth = 1;
@@ -67,7 +68,7 @@ public class ContactForm extends JFrame{
         grid.gridwidth = 1;
         panel.add(lastNameField, grid);
         
-        JLabel addressLabel = new JLabel("Address");
+        JLabel addressLabel = new JLabel("Address: ");
         grid.gridx = 2;
         grid.gridy = 3;
         grid.gridwidth = 1;
@@ -95,7 +96,7 @@ public class ContactForm extends JFrame{
             }
         };
         
-        ActionListener sortInfo = (ActionEvent event) -> CONTACT.sortingArrayList();
+        ActionListener sortInfo = (ActionEvent event) -> CONTACT.sortArrayList();
         
         ActionListener writeIntoFile = (ActionEvent event) -> CONTACT.writeFile();
         
@@ -115,6 +116,14 @@ public class ContactForm extends JFrame{
             CONTACT.setAddress(addressField.getText());
             CONTACT.fillingArrayList();
         };
+        
+        ImageIcon backToMenuIcon = new ImageIcon("D:\\study\\Practic OOP\\Practic-OOP\\PR_4\\src\\icons\\back_to_menu.png");
+        JButton backToMenuButton = new JButton(backToMenuIcon);
+        grid.gridx = 0;
+        grid.gridy = 0;
+        grid.gridwidth = 1;
+        backToMenuButton.addActionListener(backToMenu);
+        panel.add(backToMenuButton, grid);
         
         JButton displayInfoButton = new JButton("Display Info");
         grid.gridx = 0;
@@ -137,12 +146,12 @@ public class ContactForm extends JFrame{
         writeIntoFileButton.addActionListener(writeIntoFile);
         panel.add(writeIntoFileButton, grid);
         
-        JButton clearFieldsButton = new JButton("Clear Text Fields");
+        JButton clearTextFieldsButton = new JButton("Clear text fields");
         grid.gridx = 0;
-        grid.gridy = 4;
+        grid.gridy = 5;
         grid.gridwidth = 1;
-        clearFieldsButton.addActionListener(clearTextFields);
-        panel.add(clearFieldsButton, grid);
+        clearTextFieldsButton.addActionListener(clearTextFields);
+        panel.add(clearTextFieldsButton, grid);
         
         JButton addInfoButton = new JButton("Add Contact Info");
         grid.gridx = 0;
@@ -150,17 +159,5 @@ public class ContactForm extends JFrame{
         grid.gridwidth = 0;
         addInfoButton.addActionListener(addContactInfo);
         panel.add(addInfoButton, grid);
-        
-        ImageIcon backToMenuIcon = new ImageIcon("D:\\study\\Practic OOP\\Practic-OOP\\PR_4\\src\\icons\\back_to_menu.png");
-        JButton backToMenuButton = new JButton(backToMenuIcon);
-        grid.gridx = 0;
-        grid.gridy = 0;
-        grid.gridwidth = 1;
-        backToMenuButton.addActionListener(backToMenu);
-        panel.add(backToMenuButton, grid);
-        
-        
-        
-        
     }
 }

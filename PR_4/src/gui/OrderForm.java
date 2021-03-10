@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import domain.Order;
 
 import interfaces.Form;
+
 import java.io.FileReader;
+
 import java.io.IOException;
 
 public class OrderForm extends JFrame{
@@ -102,14 +104,14 @@ public class OrderForm extends JFrame{
                     strBuilder.append((char)fileReader.read());
                 }
                 
-                JOptionPane.showMessageDialog(new JFrame(), strBuilder.toString(), "Reading file", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, strBuilder.toString(), "Reading file", JOptionPane.PLAIN_MESSAGE);
             }
             catch(IOException e) {
                 e.printStackTrace();
             }
         };
         
-        ActionListener sortInfo = (ActionEvent event) -> ORDER.sortingArrayList();
+        ActionListener sortInfo = (ActionEvent event) -> ORDER.sortArrayList();
         
         ActionListener writeIntoFile = (ActionEvent event) -> ORDER.writeFile();
         

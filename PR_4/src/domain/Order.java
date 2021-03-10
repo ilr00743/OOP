@@ -19,7 +19,7 @@ public class Order extends Person{
     }
     
     public Order() {
-        this(3, "Nokia 3310", "Ivanov", "12.12.2012 12:12:12", (byte)1, new ArrayList<String>());
+        this(3, "Nokia 3310", "Ivanov", "12.12.2012 12:12:12", (byte)1, new ArrayList<>());
     }
     
     public String getName() {
@@ -72,20 +72,15 @@ public class Order extends Person{
     }
     
     @Override
-    public ArrayList<String> getArrayList() {
-        return super.getArrayList();
-    }
-    
-    @Override
     public void fillingArrayList() {
         super.fillingArrayList();
     }
-    
+
     @Override
-    public void sortingArrayList() {
-        super.sortingArrayList();
+    public void sortArrayList() {
+        super.sortArrayList();
     }
-    
+
     @Override
     public String toString() {
         return super.toString() + "\nName of product: " + name + "\nDate Time: " + dateTime + "\nType: " + type + '\n';

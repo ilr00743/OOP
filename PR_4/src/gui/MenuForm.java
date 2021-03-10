@@ -1,8 +1,5 @@
 package gui;
 
-import java.io.FileReader;
-import java.io.IOException;
-
 import javax.swing.*;
 
 import java.awt.*;
