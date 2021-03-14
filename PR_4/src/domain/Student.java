@@ -3,6 +3,7 @@ package domain;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Student extends Person{
 
@@ -11,8 +12,9 @@ public class Student extends Person{
     private String discipline;
     private byte mark;
     private String nameTeacher;
+    private ArrayList<Student> arrayList;
 
-    public Student(int id, String firstName, String lastName, int group, String department, String discipline, byte mark, String nameTeacher, ArrayList<String> arrayList) {
+    public Student(int id, String firstName, String lastName, int group, String department, String discipline, byte mark, String nameTeacher) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,11 +23,11 @@ public class Student extends Person{
         this.discipline = discipline;
         this.mark = mark;
         this.nameTeacher = nameTeacher;
-        this.arrayList = arrayList;
+        this.arrayList = new ArrayList<>();
     }
     
     public Student() {
-        this(4, "Ivan", "Ivanov", 35, "Some department", "Some discipline", (byte)5, "Ivanova", new ArrayList<>());
+        this(4, "Ivan", "Ivanov", 35, "Some department", "Some discipline", (byte)5, "Ivanova");
     }
     
     @Override
@@ -35,12 +37,7 @@ public class Student extends Person{
 
     @Override
     public void setId(int id) {
-        if(id >= 0) {
-            super.setId(id);
-        }
-        else {
-            System.out.println("ID не може бути менше нуля!!!");
-        }
+        super.setId(id);
     }
 
     @Override
@@ -103,19 +100,30 @@ public class Student extends Person{
         this.nameTeacher = nameTeacher;
     }
     
-    @Override
     public void fillingArrayList() {
-        super.fillingArrayList();
+        Student student = new Student(id, firstName, lastName, group, department, discipline, mark, nameTeacher);
+        arrayList.add(student);
     }
-
-    @Override
-    public void sortArrayList() {
-        super.sortArrayList();
+    
+    public void sortById() {
+        Collections.sort(arrayList, new SorterById());
+    }
+    
+    public void reverseSortById() {
+        Collections.sort(arrayList, Collections.reverseOrder(new SorterById()));
+    }
+    
+    public void sortByLastName() {
+        Collections.sort(arrayList, new SorterByLastName());
+    }
+    
+    public void sortByMark() {
+        Collections.sort(arrayList, Collections.reverseOrder(new SorterByMark()));
     }
 
     @Override
     public String toString() {
-        return super.toString() + "\nGroup: " + group + "\nDepartment: " + department + "\nDiscipline: " + discipline + "\nMark: " + mark + "\nNameTeacher: " + nameTeacher + "\n";
+        return super.toString() + "\nGroup: " + group + "\nDepartment: " + department + "\nDiscipline: " + discipline + "\nMark: " + mark + "\nNameTeacher: " + nameTeacher + '\n';
     }
     
     public void writeFile() {

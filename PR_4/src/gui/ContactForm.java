@@ -1,27 +1,30 @@
 package gui;
 
+import domain.Contact;
+
+import interfaces.Form;
+
 import javax.swing.*;
 import java.awt.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import domain.Contact;
-
-import interfaces.Form;
-
 import java.io.FileReader;
 import java.io.IOException;
 
 public class ContactForm extends JFrame{
     
-    private final Contact CONTACT = new Contact();
+    private final Contact CONTACT;
     
     public ContactForm(final Form form) {
+        this.CONTACT = new Contact();
         this.setTitle("CONTACT FORM");
-        this.setBounds(400,290,700,300);
+        this.setBounds(400,290,780,330);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        
         JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.getHSBColor(0.19f, 0.32f, 0.67f));
         this.setContentPane(panel);
         
         GridBagConstraints grid = new GridBagConstraints();
@@ -96,11 +99,27 @@ public class ContactForm extends JFrame{
             }
         };
         
-        ActionListener sortInfo = (ActionEvent event) -> CONTACT.sortArrayList();
-        
-        ActionListener writeIntoFile = (ActionEvent event) -> CONTACT.writeFile();
-        
         ActionListener backToMenu = (ActionEvent event) -> form.changeContactForm();
+        
+        ActionListener sortById = (ActionEvent event) -> {
+            CONTACT.sortById();
+            CONTACT.writeFile();
+        };
+        
+        ActionListener reverseSortById = (ActionEvent event) -> {
+            CONTACT.reverseSortById();
+            CONTACT.writeFile();
+        };
+        
+        ActionListener sortByLastName = (ActionEvent event) -> {
+            CONTACT.sortByLastName();
+            CONTACT.writeFile();
+        };
+        
+        ActionListener reverseSortByLastName = (ActionEvent event) -> {
+            CONTACT.reverseSortByLastName();
+            CONTACT.writeFile();
+        };
         
         ActionListener clearTextFields = (ActionEvent event) -> {
             idField.setText("");
@@ -115,6 +134,7 @@ public class ContactForm extends JFrame{
             CONTACT.setLastName(lastNameField.getText());
             CONTACT.setAddress(addressField.getText());
             CONTACT.fillingArrayList();
+            CONTACT.writeFile();
         };
         
         ImageIcon backToMenuIcon = new ImageIcon("D:\\study\\Practic OOP\\Practic-OOP\\PR_4\\src\\icons\\back_to_menu.png");
@@ -122,6 +142,7 @@ public class ContactForm extends JFrame{
         grid.gridx = 0;
         grid.gridy = 0;
         grid.gridwidth = 1;
+        backToMenuButton.setBackground(Color.getHSBColor(3, 12, 13));
         backToMenuButton.addActionListener(backToMenu);
         panel.add(backToMenuButton, grid);
         
@@ -129,34 +150,55 @@ public class ContactForm extends JFrame{
         grid.gridx = 0;
         grid.gridy = 1;
         grid.gridwidth = 1;
+        displayInfoButton.setBackground(Color.getHSBColor(3, 12, 13));
         displayInfoButton.addActionListener(displayInfo);
         panel.add(displayInfoButton, grid);
         
-        JButton sortButton = new JButton("Sorting of contacts");
+        JButton sortByIdButton = new JButton("Sorting by ID");
         grid.gridx = 0;
         grid.gridy = 2;
         grid.gridwidth = 1;
-        sortButton.addActionListener(sortInfo);
-        panel.add(sortButton, grid);
+        sortByIdButton.setBackground(Color.getHSBColor(3, 12, 13));
+        sortByIdButton.addActionListener(sortById);
+        panel.add(sortByIdButton, grid);
         
-        JButton writeIntoFileButton = new JButton("Save to .txt");
+        JButton reverseSortByIdButton = new JButton("Reverse Sorting by ID");
         grid.gridx = 0;
         grid.gridy = 3;
         grid.gridwidth = 1;
-        writeIntoFileButton.addActionListener(writeIntoFile);
-        panel.add(writeIntoFileButton, grid);
+        reverseSortByIdButton.setBackground(Color.getHSBColor(3, 12, 13));
+        reverseSortByIdButton.addActionListener(reverseSortById);
+        panel.add(reverseSortByIdButton, grid);
         
-        JButton clearTextFieldsButton = new JButton("Clear text fields");
+        JButton sortByLastNameButton = new JButton("Sorting by Last Name");
+        grid.gridx = 0;
+        grid.gridy = 4;
+        grid.gridwidth = 1;
+        sortByLastNameButton.setBackground(Color.getHSBColor(3, 12, 13));
+        sortByLastNameButton.addActionListener(sortByLastName);
+        panel.add(sortByLastNameButton, grid);
+        
+        JButton reverseSortByLastNameButton = new JButton("Reverse Sorting by Last Name");
         grid.gridx = 0;
         grid.gridy = 5;
         grid.gridwidth = 1;
+        reverseSortByLastNameButton.setBackground(Color.getHSBColor(3, 12, 13));
+        reverseSortByLastNameButton.addActionListener(reverseSortByLastName);
+        panel.add(reverseSortByLastNameButton, grid);
+        
+        JButton clearTextFieldsButton = new JButton("Clear text fields");
+        grid.gridx = 0;
+        grid.gridy = 8;
+        grid.gridwidth = 1;
+        clearTextFieldsButton.setBackground(Color.getHSBColor(3, 12, 13));
         clearTextFieldsButton.addActionListener(clearTextFields);
         panel.add(clearTextFieldsButton, grid);
         
         JButton addInfoButton = new JButton("Add Contact Info");
         grid.gridx = 0;
-        grid.gridy = 8;
+        grid.gridy = 10;
         grid.gridwidth = 0;
+        addInfoButton.setBackground(Color.getHSBColor(3, 12, 13));
         addInfoButton.addActionListener(addContactInfo);
         panel.add(addInfoButton, grid);
     }

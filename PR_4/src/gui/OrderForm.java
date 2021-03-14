@@ -16,14 +16,17 @@ import java.io.IOException;
 
 public class OrderForm extends JFrame{
     
-    private final Order ORDER = new Order();
+    private final Order ORDER;
     
     public OrderForm(final Form form) {
+        this.ORDER = new Order();
         this.setTitle("ORDER FORM");
         this.setBounds(400, 290, 750, 350);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        
         JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.getHSBColor(0.19f, 0.32f, 0.67f));
         this.setContentPane(panel);
         
         GridBagConstraints grid = new GridBagConstraints();
@@ -111,11 +114,22 @@ public class OrderForm extends JFrame{
             }
         };
         
-        ActionListener sortInfo = (ActionEvent event) -> ORDER.sortArrayList();
-        
-        ActionListener writeIntoFile = (ActionEvent event) -> ORDER.writeFile();
-        
         ActionListener backToMenu = (ActionEvent event) -> form.changeOrderForm();
+        
+        ActionListener sortById = (ActionEvent event) -> {
+            ORDER.sortById();
+            ORDER.writeFile();
+        };
+        
+        ActionListener reverseSortById = (ActionEvent event) -> {
+            ORDER.reverseSortById();
+            ORDER.writeFile();
+        };
+        
+        ActionListener sortByDate = (ActionEvent event) -> {
+            ORDER.sortByDate();
+            ORDER.writeFile();
+        };
         
         ActionListener clearTextFields = (ActionEvent event) -> {
             idField.setText("");
@@ -132,49 +146,63 @@ public class OrderForm extends JFrame{
             ORDER.setDateTime(dateTimeField.getText());
             ORDER.setType(Byte.parseByte(typeField.getText()));
             ORDER.fillingArrayList();
+            ORDER.writeFile();
         };
-        
-        JButton displayInfoButton = new JButton("Display Info");
-        grid.gridx = 0;
-        grid.gridy = 1;
-        grid.gridwidth = 1;
-        displayInfoButton.addActionListener(displayInfo);
-        panel.add(displayInfoButton, grid);
-        
-        JButton sortButton = new JButton("Sorting of orders");
-        grid.gridx = 0;
-        grid.gridy = 2;
-        grid.gridwidth = 1;
-        sortButton.addActionListener(sortInfo);
-        panel.add(sortButton, grid);
-
-        
-        JButton writeIntoFileButton = new JButton("Save to orders.txt");
-        grid.gridx = 0;
-        grid.gridy = 3;
-        grid.gridwidth = 1;
-        writeIntoFileButton.addActionListener(writeIntoFile);
-        panel.add(writeIntoFileButton, grid);
-        
-        JButton clearFieldsButton = new JButton("Clear Text Fields");
-        grid.gridx = 0;
-        grid.gridy = 4;
-        grid.gridwidth = 1;
-        clearFieldsButton.addActionListener(clearTextFields);
-        panel.add(clearFieldsButton, grid);
         
         ImageIcon backToMenuIcon = new ImageIcon("D:\\study\\Practic OOP\\Practic-OOP\\PR_4\\src\\icons\\back_to_menu.png");
         JButton backToMenuButton = new JButton(backToMenuIcon);
         grid.gridx = 0;
         grid.gridy = 0;
         grid.gridwidth = 1;
+        backToMenuButton.setBackground(Color.getHSBColor(3, 12, 13));
         backToMenuButton.addActionListener(backToMenu);
         panel.add(backToMenuButton, grid);
+        
+        JButton displayInfoButton = new JButton("Display Info");
+        grid.gridx = 0;
+        grid.gridy = 1;
+        grid.gridwidth = 1;
+        displayInfoButton.addActionListener(displayInfo);
+        displayInfoButton.setBackground(Color.getHSBColor(3, 12, 13));
+        panel.add(displayInfoButton, grid);
+        
+        JButton sortByIdButton = new JButton("Sorting by ID");
+        grid.gridx = 0;
+        grid.gridy = 2;
+        grid.gridwidth = 1;
+        sortByIdButton.setBackground(Color.getHSBColor(3, 12, 13));
+        sortByIdButton.addActionListener(sortById);
+        panel.add(sortByIdButton, grid);
+
+        JButton reverseSortByIdButton = new JButton("Reverse Sorting by ID");
+        grid.gridx = 0;
+        grid.gridy = 3;
+        grid.gridwidth = 1;
+        reverseSortByIdButton.addActionListener(reverseSortById);
+        reverseSortByIdButton.setBackground(Color.getHSBColor(3, 12, 13));
+        panel.add(reverseSortByIdButton, grid);
+        
+        JButton sortByDateButton = new JButton("Sorting by Date and Time");
+        grid.gridx = 0;
+        grid.gridy = 4;
+        grid.gridwidth = 1;
+        sortByDateButton.addActionListener(sortByDate);
+        sortByDateButton.setBackground(Color.getHSBColor(3, 12, 13));
+        panel.add(sortByDateButton, grid);
+        
+        JButton clearTextFieldsButton = new JButton("Clear text fields");
+        grid.gridx = 0;
+        grid.gridy = 8;
+        grid.gridwidth = 1;
+        clearTextFieldsButton.setBackground(Color.getHSBColor(3, 12, 13));
+        clearTextFieldsButton.addActionListener(clearTextFields);
+        panel.add(clearTextFieldsButton, grid);
                 
         JButton addInfoButton = new JButton("Add Order Info");
         grid.gridx = 0;
         grid.gridy = 10;
         grid.gridwidth = 0;
+        addInfoButton.setBackground(Color.getHSBColor(3, 12, 13));
         addInfoButton.addActionListener(addContactInfo);
         panel.add(addInfoButton, grid);
     }

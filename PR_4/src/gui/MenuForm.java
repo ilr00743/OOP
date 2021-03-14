@@ -18,7 +18,9 @@ public class MenuForm extends JFrame{
         this.setBounds(600,300,350,250);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.getHSBColor(0.19f, 0.32f, 0.67f));
         this.setContentPane(panel);
         
         GridBagConstraints grid = new GridBagConstraints();
@@ -34,12 +36,14 @@ public class MenuForm extends JFrame{
                     "Для того, щоб додати дані про контакт, введіть його дані і натисніть кнопку Add Contact Info", "Instruction", 
                     JOptionPane.INFORMATION_MESSAGE);
         };
+        
         ActionListener studentFormAction = (ActionEvent event) -> {
             form.changeStudentForm();
             JOptionPane.showMessageDialog(null, 
                     "Для того, щоб додати дані про студента, введіть його дані і натисніть кнопку Add Student Info", "Instruction", 
                     JOptionPane.INFORMATION_MESSAGE);
         };
+        
         ActionListener orderFormAction = (ActionEvent event) -> {
             form.changeOrderForm();
             JOptionPane.showMessageDialog(null, 
@@ -50,18 +54,21 @@ public class MenuForm extends JFrame{
         JButton contactFormButton = new JButton("Contact Form");
         grid.gridx = 0;
         grid.gridy = 0;
+        contactFormButton.setBackground(Color.getHSBColor(3, 12, 13));
         contactFormButton.addActionListener(contactFormAction);
         panel.add(contactFormButton, grid);
         
         JButton studentFormButton = new JButton("Student Form");
         grid.gridx = 0;
         grid.gridy = 1;
+        studentFormButton.setBackground(Color.getHSBColor(3, 12, 13));
         studentFormButton.addActionListener(studentFormAction);
         panel.add(studentFormButton, grid);
         
         JButton orderFormButton = new JButton("Order Form");
         grid.gridx = 0;
         grid.gridy = 2;
+        orderFormButton.setBackground(Color.getHSBColor(3, 12, 13));
         orderFormButton.addActionListener(orderFormAction);
         panel.add(orderFormButton, grid);
     }              

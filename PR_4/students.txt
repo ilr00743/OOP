@@ -1,0 +1,27 @@
+ID: 21
+First name: sdf
+Last name: sd
+Group: 21
+Department: dfgd
+Discipline: dfgdfg
+Mark: 6
+NameTeacher: dfgd
+
+ID: 1
+First name: sdf
+Last name: sd
+Group: 1
+Department: dfgd
+Discipline: dfgdfg
+Mark: 5
+NameTeacher: dfgd
+
+ID: 3
+First name: sdf
+Last name: sd
+Group: 3
+Department: dfgd
+Discipline: dfgdfg
+Mark: 3
+NameTeacher: dfgd
+

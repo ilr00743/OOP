@@ -3,23 +3,35 @@ package domain;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Order extends Person{
     private String name;
     private String dateTime;
     private byte type;
+    private ArrayList<Order> arrayList;
 
-    public Order(int id, String name, String courier, String dateTime, byte type, ArrayList<String> arrayList) {
+    public Order(int id, String name, String courier, String dateTime, byte type) {
         this.id = id;
         this.name = name;
         this.lastName = courier;
         this.dateTime = dateTime;
         this.type = type;
-        this.arrayList = arrayList;
+        this.arrayList = new ArrayList<>();
     }
     
     public Order() {
-        this(3, "Nokia 3310", "Ivanov", "12.12.2012 12:12:12", (byte)1, new ArrayList<>());
+        this(3, "Nokia 3310", "Ivanov", "12.12.2012 12:12:12", (byte)1);
+    }
+    
+    @Override
+    public int getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(int id) {
+        super.setId(id);
     }
     
     public String getName() {
@@ -29,7 +41,17 @@ public class Order extends Person{
     public void setName(String name) {
         this.name = name;
     }
-    
+
+    @Override
+    public void setLastName(String lastName) {
+        super.setLastName(lastName);
+    }
+
+    @Override
+    public String getLastName() {
+        return super.getLastName();
+    }
+
     public String getDateTime() {
         return dateTime;
     }
@@ -46,44 +68,26 @@ public class Order extends Person{
         this.type = type;
     }
 
-    @Override
-    public int getId() {
-        return super.getId();
+    public void fillingArrayList() {
+        Order order = new Order(id, name, lastName, dateTime, type);
+        arrayList.add(order);
     }
-
-    @Override
-    public void setId(int id) {
-        if(id >= 0) {
-            super.setId(id);
-        }
-        else {
-            System.out.println("ID не може бути менше нуля!!!");
-        }
+    
+    public void sortById() {
+        Collections.sort(arrayList, new SorterById());
     }
-
-    @Override
-    public String getLastName() {
-        return super.getLastName();
+    
+    public void reverseSortById() {
+        Collections.sort(arrayList, Collections.reverseOrder(new SorterById()));
     }
-
-    @Override
-    public void setLastName(String lastName) {
-        super.setLastName(lastName);
+    
+    public void sortByDate() {
+        Collections.sort(arrayList, new SorterByDate());
     }
     
     @Override
-    public void fillingArrayList() {
-        super.fillingArrayList();
-    }
-
-    @Override
-    public void sortArrayList() {
-        super.sortArrayList();
-    }
-
-    @Override
     public String toString() {
-        return super.toString() + "\nName of product: " + name + "\nDate Time: " + dateTime + "\nType: " + type + '\n';
+        return "ID: " + id + "\nName of product: " + name + "\nLast name of courier: " + lastName + "\nDate Time: " + dateTime + "\nType: " + type + '\n';
     }
     
     public void writeFile() {

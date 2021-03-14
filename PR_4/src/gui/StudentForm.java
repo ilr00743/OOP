@@ -15,15 +15,18 @@ import java.io.IOException;
 
 public class StudentForm extends JFrame{
     
-    private final Student STUDENT = new Student();
+    private final Student STUDENT;
     
     public StudentForm(final Form form) {
+        this.STUDENT = new Student();
+        
         this.setTitle("STUDENT FORM");
-        this.setBounds(380, 290, 760, 350);
+        this.setBounds(380, 290, 780, 350);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         
         JPanel panel = new JPanel(new GridBagLayout());
         this.setContentPane(panel);
+        panel.setBackground(Color.getHSBColor(0.19f, 0.32f, 0.67f));
         
         GridBagConstraints grid = new GridBagConstraints();
         grid.weightx = 1;
@@ -149,9 +152,25 @@ public class StudentForm extends JFrame{
             }
         };
         
-        ActionListener sortInfo = (ActionEvent event) -> STUDENT.sortArrayList();
+        ActionListener sortById = (ActionEvent event) -> {
+            STUDENT.sortById();
+            STUDENT.writeFile();
+        };
         
-        ActionListener writeIntoFile = (ActionEvent event) -> STUDENT.writeFile();
+        ActionListener reverseSortById = (ActionEvent event) -> {
+            STUDENT.reverseSortById();
+            STUDENT.writeFile();
+        };
+        
+        ActionListener sortByLastName = (ActionEvent event) -> {
+            STUDENT.sortByLastName();
+            STUDENT.writeFile();
+        };
+        
+        ActionListener sortByMark = (ActionEvent event) -> {
+            STUDENT.sortByMark();
+            STUDENT.writeFile();
+        };
         
         ActionListener backToMenu = (ActionEvent event) -> form.changeStudentForm();
         
@@ -176,10 +195,12 @@ public class StudentForm extends JFrame{
             STUDENT.setMark(Byte.parseByte(markField.getText()));
             STUDENT.setNameTeacher(teacherField.getText());
             STUDENT.fillingArrayList();
+            STUDENT.writeFile();
         };
         
         ImageIcon backToMenuIcon = new ImageIcon("D:\\study\\Practic OOP\\Practic-OOP\\PR_4\\src\\icons\\back_to_menu.png");
         JButton backToMenuButton = new JButton(backToMenuIcon);
+        backToMenuButton.setBackground(Color.getHSBColor(3, 12, 13));
         grid.gridx = 0;
         grid.gridy = 0;
         grid.gridwidth = 1;
@@ -191,34 +212,55 @@ public class StudentForm extends JFrame{
         grid.gridy = 1;
         grid.gridwidth = 1;
         displayInfoButton.addActionListener(displayInfo);
+        displayInfoButton.setBackground(Color.getHSBColor(3, 12, 13));;
         panel.add(displayInfoButton, grid);
         
-        JButton sortButton = new JButton("Sorting of students");
+        JButton sortByIdButton = new JButton("Sorting By ID");
         grid.gridx = 0;
         grid.gridy = 2;
         grid.gridwidth = 1;
-        sortButton.addActionListener(sortInfo);
-        panel.add(sortButton, grid);
+        sortByIdButton.addActionListener(sortById);
+        sortByIdButton.setBackground(Color.getHSBColor(3, 12, 13));
+        panel.add(sortByIdButton, grid);
         
-        JButton writeIntoFileButton = new JButton("Save to students.txt");
+        JButton reverseSortByIdButton = new JButton("Reverse Sorting by ID");
         grid.gridx = 0;
         grid.gridy = 3;
         grid.gridwidth = 1;
-        writeIntoFileButton.addActionListener(writeIntoFile);
-        panel.add(writeIntoFileButton, grid);
+        reverseSortByIdButton.addActionListener(reverseSortById);
+        reverseSortByIdButton.setBackground(Color.getHSBColor(3, 12, 13));
+        panel.add(reverseSortByIdButton, grid);
         
-        JButton clearFieldsButton = new JButton("Clear Text Fields");
+        JButton sortByLastNameButton = new JButton("Sorting by Last Name");
         grid.gridx = 0;
         grid.gridy = 4;
         grid.gridwidth = 1;
-        clearFieldsButton.addActionListener(clearTextFields);
-        panel.add(clearFieldsButton, grid);
+        sortByLastNameButton.addActionListener(sortByLastName);
+        sortByLastNameButton.setBackground(Color.getHSBColor(3, 12, 13));
+        panel.add(sortByLastNameButton, grid);
         
-        JButton addInfoButton = new JButton("Add Student Info");
+        JButton sortByMarkButton = new JButton("Descending Sorting by mark");
+        grid.gridx = 0;
+        grid.gridy = 5;
+        grid.gridwidth = 1;
+        sortByMarkButton.addActionListener(sortByMark);
+        sortByMarkButton.setBackground(Color.getHSBColor(3, 12, 13));
+        panel.add(sortByMarkButton, grid);
+        
+        JButton clearTextFieldsButton = new JButton("Clear text fields");
         grid.gridx = 0;
         grid.gridy = 8;
+        grid.gridwidth = 1;
+        clearTextFieldsButton.addActionListener(clearTextFields);
+        clearTextFieldsButton.setBackground(Color.getHSBColor(3, 12, 13));
+        panel.add(clearTextFieldsButton, grid);
+                
+        JButton addInfoButton = new JButton("Add Order Info");
+        grid.gridx = 0;
+        grid.gridy = 10;
         grid.gridwidth = 0;
         addInfoButton.addActionListener(addContactInfo);
+        addInfoButton.setBackground(Color.getHSBColor(3, 12, 13));
         panel.add(addInfoButton, grid);
     }
 }

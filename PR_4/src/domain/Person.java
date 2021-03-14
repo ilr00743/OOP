@@ -1,20 +1,15 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class Person{
     
     protected int id;
     protected String firstName;
     protected String lastName;
-    protected ArrayList<String> arrayList;
     
     public Person() {
         this.id = 0;
         this.firstName = "Name";
         this.lastName = "Last name";
-        arrayList = new ArrayList<>();
     }
 
     public int getId() {
@@ -45,17 +40,10 @@ public class Person{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public void fillingArrayList() {
-        arrayList.add(toString());
-    }
-    
-    public void sortArrayList() {
-        Collections.sort(arrayList);
-    }
     
     @Override
     public String toString() {
         return "ID: " + id + "\nFirst name: " + firstName + "\nLast name: " + lastName;
     }
 }
+

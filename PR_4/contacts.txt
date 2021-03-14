@@ -1,15 +1,10 @@
-ID: 10
-First name: wert
-Last name: sdfg
-Address: wert
-
 ID: 2
-First name: wert
-Last name: sdfg
-Address: wert
+First name: Вася
+Last name: Зупкин
+Address: Карец
 
 ID: 3
-First name: wert
-Last name: sdfg
-Address: wert
+First name: Вася
+Last name: Пупкин
+Address: Карец
 

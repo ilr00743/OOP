@@ -3,21 +3,24 @@ package domain;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Contact extends Person{
 
-    protected String address;
-
-    public Contact(int id, String firstName, String lastName, String address, ArrayList<String> arrayList) {
+    private ArrayList<Contact> arrayList;
+     
+    private String address;
+    
+    public Contact(int id, String firstName, String lastName, String address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.arrayList = arrayList;
+        this.arrayList = new ArrayList<>();
     }
     
     public Contact() {
-        this(5, "Petya", "Poroh", "Pushkin St.", new ArrayList<>());
+        this(5, "Petya", "Poroh", "Pushkin St.");
     }
     
     @Override
@@ -27,12 +30,7 @@ public class Contact extends Person{
 
     @Override
     public void setId(int id) {
-        if (id >= 0) {
-            super.setId(id);
-        }
-        else {
-            System.out.println("Id не може бути менше нуля!");
-        }
+        super.setId(id);
     }
 
     @Override
@@ -63,27 +61,38 @@ public class Contact extends Person{
         this.address = address;
     }
     
-    @Override
     public void fillingArrayList() {
-        super.fillingArrayList();
+        Contact contact = new Contact(id, firstName, lastName, address);
+        arrayList.add(contact);
     }
-
-    @Override
-    public void sortArrayList() {
-        super.sortArrayList();
+    
+    public void sortById() {
+        Collections.sort(arrayList, new SorterById());
+    }
+    
+    public void reverseSortById() {
+        Collections.sort(arrayList, Collections.reverseOrder(new SorterById()));
+    }
+    
+    public void sortByLastName() {
+        Collections.sort(arrayList, new SorterByLastName());
+    }
+    
+    public void reverseSortByLastName() {
+        Collections.sort(arrayList, Collections.reverseOrder(new SorterByLastName()));
     }
     
     @Override
     public String toString() {
-        return super.toString() + "\nAddress: " + getAddress() + "\n";
+        return super.toString() + "\nAddress: " + getAddress() + '\n';
     }
     
     public void writeFile() {
         try(FileWriter fileWriter = new FileWriter("contacts.txt", false)) {
             StringBuilder strBuilder = new StringBuilder();
             
-            arrayList.forEach((string) -> {
-                strBuilder.append(string).append('\n');
+            arrayList.forEach((person) -> {
+                strBuilder.append(person).append('\n');
             });
             
             fileWriter.write(String.valueOf(strBuilder));
