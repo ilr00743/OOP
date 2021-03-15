@@ -27,7 +27,7 @@ public class Student extends Person{
     }
     
     public Student() {
-        this(4, "Ivan", "Ivanov", 35, "Some department", "Some discipline", (byte)5, "Ivanova");
+        this(4, "Ivan", "Ivanov", 35, "Some department", "Some discipline", (byte)5, "Petrovna");
     }
     
     @Override

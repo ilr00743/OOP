@@ -20,7 +20,7 @@ public class Contact extends Person{
     }
     
     public Contact() {
-        this(5, "Petya", "Poroh", "Pushkin St.");
+        this(5, "Petya", "Petrov", "Pushkin St.");
     }
     
     @Override

@@ -7,10 +7,10 @@ import interfaces.Form;
 
 public class Main implements Form{
 
-    private MenuForm menuForm;
-    private ContactForm contactForm;
-    private StudentForm studentForm;
-    private OrderForm orderForm;
+    private final MenuForm MENU_FORM;
+    private final ContactForm CONTACT_FORM;
+    private final StudentForm STUDENT_FORM;
+    private final OrderForm ORDER_FORM;
     
     public static void main(String[] args) {
         
@@ -23,28 +23,28 @@ public class Main implements Form{
     }
     
     public Main() {
-        menuForm = new MenuForm(this);
-        contactForm = new ContactForm(this);
-        studentForm = new StudentForm(this);
-        orderForm = new OrderForm(this);
-        menuForm.setVisible(true);
+        MENU_FORM = new MenuForm(this);
+        CONTACT_FORM = new ContactForm(this);
+        STUDENT_FORM = new StudentForm(this);
+        ORDER_FORM = new OrderForm(this);
+        MENU_FORM.setVisible(true);
     }
     
     @Override
     public void changeContactForm() {
-        menuForm.setVisible(!menuForm.isVisible());
-        contactForm.setVisible(!contactForm.isVisible());
+        MENU_FORM.setVisible(!MENU_FORM.isVisible());
+        CONTACT_FORM.setVisible(!CONTACT_FORM.isVisible());
     }
 
     @Override
     public void changeStudentForm() {
-        menuForm.setVisible(!menuForm.isVisible());
-        studentForm.setVisible(!studentForm.isVisible());
+        MENU_FORM.setVisible(!MENU_FORM.isVisible());
+        STUDENT_FORM.setVisible(!STUDENT_FORM.isVisible());
     }
     
     @Override
     public void changeOrderForm() {
-        menuForm.setVisible(!menuForm.isVisible());
-        orderForm.setVisible(!orderForm.isVisible());
+        MENU_FORM.setVisible(!MENU_FORM.isVisible());
+        ORDER_FORM.setVisible(!ORDER_FORM.isVisible());
     }
 }

@@ -46,4 +46,3 @@ public class Person{
         return "ID: " + id + "\nFirst name: " + firstName + "\nLast name: " + lastName;
     }
 }
-
